@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Club</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #e3dcc8;
+      }
+      .topbar {
+        background: #171b1d;
+        color: white;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+      }
+      .brand-dot {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        border-radius: 50%;
+        background: #f2f2f2;
+        position: relative;
+      }
+      .brand-dot::before {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #171b1d;
+        border-radius: 50%;
+        left: 4px;
+        top: 4px;
+      }
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .settings {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .menu-dots {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        position: relative;
+      }
+      .menu-dots::before,
+      .menu-dots::after,
+      .menu-dots span {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        left: 10px;
+      }
+      .menu-dots::before { top: 5px; }
+      .menu-dots span { top: 10px; }
+      .menu-dots::after { top: 15px; }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        padding-top: 70px;
+      }
+      .panel {
+        width: 760px;
+        min-height: 620px;
+        background: rgba(255,255,255,0.08);
+        border: 3px solid #2ec5d3;
+        border-radius: 12px;
+        padding: 30px 30px 24px;
+      }
+      h1 {
+        text-align: center;
+        color: #2ec5d3;
+        font-size: 52px;
+        margin: 10px 0 0;
+        font-weight: 700;
+      }
+      .subtitle {
+        text-align: center;
+        color: #5d656d;
+        font-size: 32px;
+        font-style: italic;
+        margin: 8px 0 26px;
+      }
+      .art {
+        width: 100%;
+        max-width: 540px;
+        height: 210px;
+        margin: 0 auto 22px;
+        position: relative;
+        background: #f1f1f1;
+      }
+      .art .wall {
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,0.1);
+      }
+      .art .wall::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(to right, rgba(0,0,0,.02) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(0,0,0,.02) 1px, transparent 1px);
+        background-size: 55px 40px;
+      }
+      .counter {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 58px;
+        background: #d9c8a8;
+      }
+      .cup {
+        position: absolute;
+        left: 130px;
+        bottom: 58px;
+        width: 80px;
+        height: 82px;
+        background: #2a5660;
+        border-radius: 18px 18px 12px 12px;
+      }
+      .cup::before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 12px;
+        width: 12px;
+        height: 40px;
+        background: #1b2d34;
+        border-radius: 10px 0 0 10px;
+      }
+      .cup::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: -14px;
+        width: 62px;
+        height: 14px;
+        background: #f3efe9;
+        border-radius: 12px 12px 8px 8px;
+      }
+      .heart {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: #ea7d6d;
+        transform: rotate(-45deg);
+        left: 30px;
+        top: 28px;
+      }
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: #ea7d6d;
+        border-radius: 50%;
+      }
+      .heart::before { left: 0; top: -10px; }
+      .heart::after { left: 10px; top: 0; }
+      .plant {
+        position: absolute;
+        right: 126px;
+        bottom: 58px;
+        width: 120px;
+        height: 100px;
+      }
+      .pot {
+        position: absolute;
+        bottom: 0;
+        left: 35px;
+        width: 52px;
+        height: 44px;
+        background: #d5c2a6;
+        border-radius: 8px 8px 12px 12px;
+      }
+      .pot::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 3px;
+        right: 3px;
+        height: 12px;
+        background: #d9d0c2;
+        border-radius: 6px 6px 0 0;
+      }
+      .leaf {
+        position: absolute;
+        width: 18px;
+        height: 38px;
+        background: linear-gradient(#8ab26a, #4f7f52);
+        border-radius: 60% 0 60% 0;
+        bottom: 33px;
+      }
+      .leaf:nth-child(1) { left: 24px; transform: rotate(-25deg); }
+      .leaf:nth-child(2) { left: 35px; transform: rotate(20deg); }
+      .leaf:nth-child(3) { left: 50px; transform: rotate(-10deg); }
+      .leaf:nth-child(4) { left: 58px; transform: rotate(8deg); }
+      .leaf:nth-child(5) { left: 14px; transform: rotate(10deg); }
+
+      .menu h2 {
+        color: #d76f48;
+        font-size: 38px;
+        margin: 0;
+      }
+      .divider {
+        border-top: 2px solid #d6d2c8;
+        margin: 10px 0 16px;
+      }
+      .list {
+        margin: 0 0 18px 26px;
+        padding: 0;
+        font-size: 20px;
+        line-height: 1.8;
+      }
+      .join {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        font-size: 22px;
+      }
+      .join a {
+        color: #1ca4d6;
+        text-decoration: underline;
+        font-weight: 700;
+        font-size: 22px;
+      }
+      .join span {
+        color: #4b565d;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Continue where you left off: Chrome can restore your tabs every time you restart. To turn this on, go to Settings</span>
+      </div>
+      <div class="top-actions">
+        <a class="settings" href="#">Setting</a>
+        <div class="menu-dots"><span></span></div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="panel">
+        <h1>IT Club</h1>
+        <div class="subtitle">Welcome Booth</div>
+
+        <div class="art">
+          <div class="wall"></div>
+          <div class="cup">
+            <div class="heart"></div>
+          </div>
+          <div class="plant">
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="pot"></div>
+          </div>
+          <div class="counter"></div>
+        </div>
+
+        <div class="menu">
+          <h2>Today's Menu</h2>
+          <div class="divider"></div>
+          <ul class="list">
+            <li>AI Stuff</li>
+            <li>Basic HTML</li>
+            <li>Introduction to Javascript</li>
+          </ul>
+          <div class="join">
+            <a href="#">Link for Joining</a>
+            <span>Open 1:00-4:00 PM. Non-members may join.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
